@@ -17,20 +17,25 @@ if __name__ == '__main__':
 
     # A little bit of cleanup for scikit-learn's benefit. Scikit-learn models wants our categories to
     # be numbers, not strings. The LabelEncoder performs this transformation.
-    le = preprocessing.LabelEncoder()
-    correct_labels = le.fit_transform(labels)
+    encoder = preprocessing.LabelEncoder()
+    correct_labels = encoder.fit_transform(labels)
 
     ########## STEP 2: FEATURE EXTRACTION ##########
 
+    # vectorizer = CountVectorizer(stop_words='english', min_df=2, lowercase=True, analyzer='word')
+
     # These two lines use scikit-learn helpers to transform our training data into a document/term matrix.
-    vectorizer = CountVectorizer(stop_words='english', min_df=2, lowercase=True, analyzer='word')
+    vectorizer = CountVectorizer()
     data = vectorizer.fit_transform(text).todense()
+
+    # print data
+    # print data.shape
 
     ########## STEP 3: MODEL BUILDING ##########
 
-    #model = MultinomialNB()
+    # model = RandomForestClassifier(n_estimators=10, random_state=0)
 
-    model = RandomForestClassifier(n_estimators=10, random_state=0)
+    model = MultinomialNB()
     fit_model = model.fit(data, correct_labels)
 
     ########## STEP 4: EVALUATION ##########
@@ -41,13 +46,13 @@ if __name__ == '__main__':
 
     ########## STEP 5: APPLYING THE MODEL ##########
 
-    # docs_new = ["Public postsecondary education: executive officer compensation.",
-    #             "An act to add Section 236.3 to the Education code, related to the pricing of college textbooks.",
-    #             "Political Reform Act of 1974: campaign disclosures.",
-    #             "An act to add Section 236.3 to the Penal Code, relating to human trafficking."
-    #         ]
+    docs_new = ["Public postsecondary education: executive officer compensation.",
+                "An act to add Section 236.3 to the Education code, related to the pricing of college textbooks.",
+                "Political Reform Act of 1974: campaign disclosures.",
+                "An act to add Section 236.3 to the Penal Code, relating to human trafficking."
+            ]
 
-    # test_data = vectorizer.transform(docs_new)
+    test_data = vectorizer.transform(docs_new)
 
-    # for i in xrange(len(docs_new)):
-    #     print '%s -> %s' % (docs_new[i], le.classes_[model.predict(test_data.toarray()[i])])
+    for i in xrange(len(docs_new)):
+        print '%s -> %s' % (docs_new[i], le.classes_[model.predict(test_data.toarray()[i])])

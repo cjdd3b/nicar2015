@@ -25,7 +25,7 @@ The first part is an art. Creating features that you model finds useful can be a
 For this example, we'll see how to extract features from just the words in our bill titles.
 
 What we're covering
-===================
+-------------------
 
 - Features are the information we give our models. They are the only way models understand the world around them.
 
@@ -34,7 +34,7 @@ What we're covering
 - The number of columns also represents the dimensionality of our dataset in a geometric space known as the hyperplane. A matrix with two columns, for latitude and longitude, can be thought of as representing a vector in two-dimensional space (like a map). Our data follows a similar intuition but is represented in hundreds of dimensions.
 
 What we're not covering
-=======================
+-----------------------
 
 - In our example, features are simply counts of the words contained in our bill titles. But often it's helpful to define them more explicitly, depending on the task at hand. For example, if you're building a classifier to [identify quotes in text](https://github.com/cjdd3b/quotex-simple/), two useful features might be "paragraph contains quote marks" and "paragraph ends with quote marks". Often I like to define each of these as [functions](https://github.com/cjdd3b/quotex-simple/blob/master/features/features.py), which are combined later into a feature vector.
 
@@ -56,7 +56,7 @@ First, we have to "train" it on a set of pre-labeled data, represented by the se
 Scikit-learn makes it easy to substitute one model for another, so we'll try two: Multinomial Naive Bayes and Random Forests.
 
 What we're covering
-===================
+-------------------
 
 - Classification models essentially apply weights to features. They do this by looking at a pre-labeled set of data. After the model has been "trained," it can evaluate unseen data using the information it learned from the training set.
 
@@ -67,7 +67,7 @@ What we're covering
 - In the newsroom, I like to choose models that are relatively transparent and easy to explain: linear and logistic regression, Naive Bayes, k-nearest neighbors, decision trees and Random Forests are good examples. Things like Support Vector Machines and neural networks are more black-box, and so I only use those when there's a good reason.
 
 What we're not covering
-=======================
+------------------------
 
 - Overfitting happens when you create a classifier that performs well on training data but doesn't generalize well to unseen data. It's a major problem to beware of. Here's a great [visual explanation](http://www.quora.com/What-is-an-intuitive-explanation-of-overfitting) of what it looks like.
 
@@ -89,7 +89,7 @@ Having some intuition into how your model performs -- and specifically how it fa
 Here we'll go over some techniques for seeing how our model performs, and how we can use that information to improve it.
 
 What we're covering
-===================
+-------------------
 
 - Distill your model's performance into a single number. Then try to make that number go up.
 
@@ -98,7 +98,7 @@ What we're covering
 - Some, but not all, models can also produce confidence scores when they are applied to unseen data. In the case of scikit-learn's Random Forests, we can access these scores using the [predict_proba method](http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier.predict_proba).
 
 What we're not covering
-=======================
+-----------------------
 
 - In classification, be mindful of the tradeoff between [precision and recall](http://en.wikipedia.org/wiki/Precision_and_recall). Which one you optimize for depends on what you're trying to accomplish. The composite metric [F1](http://en.wikipedia.org/wiki/F1_score) captures some of this balance, but there are plenty of times it won't be the best metric for your task.
 

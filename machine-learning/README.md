@@ -91,11 +91,9 @@ Here we'll go over some techniques for seeing how our model performs, and how we
 What we're covering
 -------------------
 
-- Distill your model's performance into a single number. Then try to make that number go up.
+- Distill your model's performance into a metric. Then try to make that number go up.
 
 - [K-fold cross-validation](http://scikit-learn.org/stable/modules/cross_validation.html) is generally a good way to evaluate classifier performance.
-
-- Some, but not all, models can also produce confidence scores when they are applied to unseen data. In the case of scikit-learn's Random Forests, we can access these scores using the [predict_proba method](http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier.predict_proba).
 
 What we're not covering
 -----------------------
@@ -105,6 +103,8 @@ What we're not covering
 - Beware any model that performs too well.
 
 - Take time to learn exactly what your model is getting right and what it's getting wrong. Looking at specific mistakes can guide you toward creating new features, tuning parameters and trying different types of models.
+
+- Some models can also produce confidence scores when they are applied to unseen data. In the case of scikit-learn's Random Forests, for example, we can access these scores using the [predict_proba method](http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier.predict_proba).
 
 Other resources
 ===============

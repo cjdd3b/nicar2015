@@ -21,6 +21,7 @@ if __name__ == '__main__':
     correct_labels = encoder.fit_transform(labels)
 
     ########## STEP 2: FEATURE EXTRACTION ##########
+    print 'Extracting features ...'
 
     # vectorizer = CountVectorizer(stop_words='english', min_df=2, lowercase=True, analyzer='word')
 
@@ -32,6 +33,7 @@ if __name__ == '__main__':
     # print data.shape
 
     ########## STEP 3: MODEL BUILDING ##########
+    print 'Training ...'
 
     # model = RandomForestClassifier(n_estimators=10, random_state=0)
 
@@ -39,12 +41,14 @@ if __name__ == '__main__':
     fit_model = model.fit(data, correct_labels)
 
     ########## STEP 4: EVALUATION ##########
+    print 'Evaluating ...'
 
     # Evaluate our model with 10-fold cross-validation
     scores = cross_validation.cross_val_score(model, data, correct_labels, cv=10)
     print "Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2)
 
     ########## STEP 5: APPLYING THE MODEL ##########
+    print 'Classifying ...'
 
     docs_new = ["Public postsecondary education: executive officer compensation.",
                 "An act to add Section 236.3 to the Education code, related to the pricing of college textbooks.",
@@ -55,4 +59,4 @@ if __name__ == '__main__':
     test_data = vectorizer.transform(docs_new)
 
     for i in xrange(len(docs_new)):
-        print '%s -> %s' % (docs_new[i], le.classes_[model.predict(test_data.toarray()[i])])
+        print '%s -> %s' % (docs_new[i], encoder.classes_[model.predict(test_data.toarray()[i])])
